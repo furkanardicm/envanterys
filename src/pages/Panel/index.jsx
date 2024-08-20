@@ -145,27 +145,12 @@ function Index() {
 
       <div className='relative mx-auto w-[80%] h-[80%] bg-white/30 shadow-inner shadow-black/30 p-4 stroke-black/30 border rounded flex flex-col items-center justify-center'>
         <div className="absolute top-0 left-0 px-4 py-2"><span className='font-extrabold'>{filteredItems.length}</span> Ürün Getirildi.</div>
-        <div className="w-[85%] h-[90%] mt-4 rounded overflow-y-auto flex flex-row flex-wrap gap-2 items-center justify-center"> 
-          
-          { filteredItems.length === 0 ? "Envanteriniz Boş, Lütfen Ürün Ekleyin !": (
-            filteredItems.map((item, index) => (
-              <div key={index} className="relative grid place-items-center bg-white/30 w-56 h-64 rounded p-3 shrink-0 shadow-inner border shadow-black/30">
-                <button onClick={() => handleClick(0, item)} className="absolute top-2 right-11 grid place-items-center p-2 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded"><FontAwesomeIcon icon={faPen} /></button>
-                <button onClick={() => handleClick(2, item)} className="absolute top-2 right-2 grid place-items-center p-2 bg-red-700 hover:bg-red-800 text-white transition-all font-semibold rounded"><FontAwesomeIcon className='' icon={faTrash} /></button>
-                <p className='font-bold z-10 mt-5'>{item.ProductName} </p>
-                <p className='text-sm font-bold'>Ürün ID: {item.ProductID}</p>
-                <p className='text-4xl font-bold'>{item.InventoryLevel}</p>
-                <p className='font-bold'>{item.Season}</p>
-                <p className='font-bold w-full text-center'>{item.Date.slice(5,16)}</p>
-              </div>
-            ))
-          )}
-        </div>
+        
         <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
           <button onClick={() => handleClick(1, null)} className="mt-4 w-52 h-11 bg-green-700 hover:bg-green-800 text-white transition-all font-semibold rounded">Ürün Ekle <FontAwesomeIcon className='ml-2' icon={faSquarePlus} /></button>
-          <div onClick={() => { setOpen(!isOpen); setOpen2(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Sırala <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen ? 'mb-2' : 'mt-3 rotate-180'}`} icon={faSortDown} />
+          <div onClick={() => { setOpen(!isOpen); setOpen2(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Sırala <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} />
             {isOpen && (
-              <ul className="z-20 absolute bottom-16 mt-2 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-15 border border-gray-100">
+              <ul className="z-20 absolute top-14 mt-2 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-15 border border-gray-100">
                 <li onClick={() => handleSort('quantity')} className={`px-4 py-2 ${getSortClass('quantity')} font-medium cursor-pointer`}>Adede Göre <FontAwesomeIcon className='float-right' icon={faArrowDown19} /></li>
                 <li onClick={() => handleSort('alphabetical')} className={`px-4 py-2 ${getSortClass('alphabetical')} font-medium cursor-pointer`}>Alfabetik <FontAwesomeIcon className='float-right' icon={faArrowDownAZ} /></li>
                 <li onClick={() => handleSort('season')} className={`px-4 py-2 ${getSortClass('season')} font-medium cursor-pointer`}>Mevsime Göre <FontAwesomeIcon className='float-right' icon={faSnowflake} /></li>
@@ -174,9 +159,9 @@ function Index() {
             )}
           </div>
           <div className="relative">
-            <div onClick={() => { setOpen2(!isOpen2); setOpen(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Filtrele <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen2 ? 'mb-2' : 'mt-3 rotate-180'}`} icon={faSortDown} /></div>
+            <div onClick={() => { setOpen2(!isOpen2); setOpen(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Filtrele <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen2 ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} /></div>
             {isOpen2 && (
-              <ul className="z-20 absolute bottom-16 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-12 border border-gray-100">
+              <ul className="z-20 absolute top-20 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-12 border border-gray-100">
                 <li className="px-4 py-2 hover:bg-gray-200 font-medium cursor-pointer">
                   Adede Göre
                   <div className="flex flex-col">
@@ -215,6 +200,22 @@ function Index() {
               </ul>
             )}
           </div>
+        </div>
+        <div className="w-[85%] h-[90%] mt-4 rounded overflow-y-auto flex flex-row flex-wrap gap-2 items-center justify-center"> 
+          
+          { filteredItems.length === 0 ? "Envanteriniz Boş, Lütfen Ürün Ekleyin !": (
+            filteredItems.map((item, index) => (
+              <div key={index} className="relative grid place-items-center bg-white/30 w-56 h-64 rounded p-3 shrink-0 shadow-inner border shadow-black/30">
+                <button onClick={() => handleClick(0, item)} className="absolute top-2 right-11 grid place-items-center p-2 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded"><FontAwesomeIcon icon={faPen} /></button>
+                <button onClick={() => handleClick(2, item)} className="absolute top-2 right-2 grid place-items-center p-2 bg-red-700 hover:bg-red-800 text-white transition-all font-semibold rounded"><FontAwesomeIcon className='' icon={faTrash} /></button>
+                <p className='font-bold z-10 mt-5'>{item.ProductName} </p>
+                <p className='text-sm font-bold'>Ürün ID: {item.ProductID}</p>
+                <p className='text-4xl font-bold'>{item.InventoryLevel}</p>
+                <p className='font-bold'>{item.Season}</p>
+                <p className='font-bold w-full text-center'>{item.Date.slice(5,16)}</p>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
