@@ -163,7 +163,7 @@ function Actions({ value, item, refreshData, datas }) {
   };
 
   return (
-    <div className='h-full flex items-center justify-center'>
+    <div className='h-full flex items-center justify-center w-[70%]'>
       <div className="overflow-auto max-w-full max-h-screen mx-auto w-full h-full flex flex-col justify-center items-center gap-10">
         <div className="w-full max-w-lg mx-auto flex flex-col gap-2 justify-center">
           {value === 2 && (

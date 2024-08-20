@@ -63,7 +63,7 @@ function ForecastChart({ forecastData }) {
   };
 
   return (
-    <div className="w-full h-64">
+    <div className="w-full h-64 flex flex-row items-center justify-center">
       <Line data={data} options={options} />
     </div>
   );
