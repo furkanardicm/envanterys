@@ -88,7 +88,7 @@ function Index() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder='Yeni şifrenizi girin'
+              placeholder='Yeni şifrenizi girin (isteğe bağlı)'
             />
             <button type="submit" className="w-40 h-12 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded">
               Güncelle <FontAwesomeIcon className='ml-2' icon={faPen} />
