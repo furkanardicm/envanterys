@@ -50,8 +50,8 @@ def register():
     connection = get_db_connection()
     cursor = connection.cursor()
     cursor.execute(
-        "INSERT INTO users (fullname, password, email) VALUES (%s, %s, %s)",
-        (fullname, password, email),
+        "INSERT INTO users (email, password, fullname) VALUES (%s, %s, %s)",
+        (email, password, fullname),
     )
     connection.commit()
 
@@ -67,9 +67,9 @@ def register():
                 message="Kayıt başarılı!",
                 user={
                     "userID": user[0],  # Kullanıcı ID'sini döndürüyoruz
-                    "fullname": user[3],
-                    "password": user[2],
                     "email": user[1],
+                    "password": user[2],
+                    "fullname": user[3],
                 },
             ),
             200,
@@ -86,27 +86,29 @@ def update_user():
     password = data.get("password")
     oldPassword = data.get("oldpassword")
     email = data.get("email")
-    hashed_password = password
-    if password:
-        hashed_password = password
-    else:
-        hashed_password = oldPassword
-    # Şifreyi hash'leme
-    if password:
-        hashed_password = bcrypt.hashpw(
-            password.encode("utf-8"), bcrypt.gensalt()
-        ).decode("utf-8")
-    print(hashed_password, " Password: ", password)
-    connection = get_db_connection()
 
+    connection = get_db_connection()
     try:
         cursor = connection.cursor()
+
+        # Mevcut kullanıcı bilgilerini çek
+        cursor.execute("SELECT password FROM users WHERE userid = %s", [user_id])
+        current_password = cursor.fetchone()[0]
+
+        # Eğer yeni şifre girilmişse, şifreyi hash'leyin
+        if password:
+            hashed_password = bcrypt.hashpw(
+                password.encode("utf-8"), bcrypt.gensalt()
+            ).decode("utf-8")
+        else:
+            hashed_password = current_password
+
         query = """
         UPDATE users
-        SET fullname = %s, password = %s, email = %s
+        SET email = %s, password = %s, fullname = %s
         WHERE userid = %s
         """
-        cursor.execute(query, (fullname, hashed_password, email, user_id))
+        cursor.execute(query, (email, hashed_password, fullname, user_id))
         connection.commit()
     finally:
         cursor.close()
@@ -134,9 +136,9 @@ def login():
             message="Giriş başarılı!",
             user={
                 "userID": user[0],
-                "fullname": user[3],
                 "email": user[1],
                 "password": user[2],
+                "fullname": user[3],
             },
         )
     else:

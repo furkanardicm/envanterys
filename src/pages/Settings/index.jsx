@@ -46,6 +46,7 @@ function Index() {
       });
 
       if (response.ok) {
+        alert("Güncelleme işlemi başarılı!")
         const data = await response.json();
         setPassword(data.password)
         setOldPassword(data.hashed_password)

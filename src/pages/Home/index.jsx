@@ -24,6 +24,7 @@ function Index() {
             dispatch(setUserID(response.data.user.userID)); // UserID'yi Redux'a kaydet
             navigate('/panel');
         } catch (error) {
+            alert("Hatalı Giriş Yaptınız!")
             console.error('Login error:', error);
         }
     };
