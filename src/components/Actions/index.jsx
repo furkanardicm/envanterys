@@ -57,29 +57,41 @@ function Actions({ value, item, refreshData, datas }) {
     try {
       if (value === 0) {
         // Güncelleme işlemi
-        await axios.put('http://localhost:5001/api/update', {
-          ProductID: data.secilenUrun,
-          ProductName: data.yeniIsim,
-          InventoryLevel: data.yeniAdet,
-          Season: data.yeniMevsim,
-          UserID: userID,
-        });
-        refreshData();
-        console.log('Güncelleme başarılı, ProductID: ' + data.secilenUrun + " Yeni Adet: " + data.yeniAdet);
+        try {
+          await axios.put('http://localhost:5001/api/update', {
+            ProductID: data.secilenUrun,
+            ProductName: data.yeniIsim,
+            InventoryLevel: data.yeniAdet,
+            Season: data.yeniMevsim,
+            UserID: userID,
+          });
+          refreshData();
+          console.log('Güncelleme başarılı, ProductID: ' + data.secilenUrun + " Yeni Adet: " + data.yeniAdet);
+        } catch (updateError) {
+          console.error('Güncelleme işlemi sırasında bir hata oluştu:', updateError);
+          alert("Güncelleme işlemi sırasında bir hata oluştu")
+          // Hata mesajını kullanıcıya göstermek için gerekli işlemleri yapabilirsiniz
+        }
       } else if (value === 1) {
         // Ekleme işlemi
-        const addResponse = await axios.post('http://localhost:5001/api/add', {
-          UserID: userID,
-          ProductID: null, // Yeni bir ürün eklediğimiz için ProductID'yi null gönderiyoruz
-          Date: new Date().toISOString().slice(0, 10),
-          ProductName: data.yeniIsim,
-          InventoryLevel: data.yeniAdet,
-          Season: data.yeniMevsim,
-        });
-        const productID = addResponse.data.ProductID;
-        setSelectedProductID(productID); // ProductID'yi state'e kaydet
-        refreshData();
-        console.log('Ekleme başarılı');
+        try {
+          const addResponse = await axios.post('http://localhost:5001/api/add', {
+            UserID: userID,
+            ProductID: null, // Yeni bir ürün eklediğimiz için ProductID'yi null gönderiyoruz
+            Date: new Date().toISOString().slice(0, 10),
+            ProductName: data.yeniIsim,
+            InventoryLevel: data.yeniAdet,
+            Season: data.yeniMevsim,
+          });
+          const productID = addResponse.data.ProductID;
+          setSelectedProductID(productID); // ProductID'yi state'e kaydet
+          refreshData();
+          console.log('Ekleme başarılı');
+        } catch (addError) {
+          console.error('Ekleme işlemi sırasında bir hata oluştu:', addError);
+          alert("Ekleme işlemi sırasında bir hata oluştu")
+          // Hata mesajını kullanıcıya göstermek için gerekli işlemleri yapabilirsiniz
+        }
       } else if (value === 2) {
         // Silme işlemi
         confirmAlert({
