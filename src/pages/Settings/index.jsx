@@ -67,16 +67,13 @@ function Index() {
           <div className="flex flex-row gap-3 items-center">
             <input
               id="kadi"
-              className='w-[350px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
+              className='max-w-[350px] min-w-[290px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
               type="text"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
               placeholder=''
               required
             />
-            <button type="submit" className="w-40 h-12 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded">
-              Güncelle <FontAwesomeIcon className='ml-2' icon={faPen} />
-            </button>
           </div>
         </div>
         <div className="flex flex-col">
@@ -84,15 +81,13 @@ function Index() {
           <div className="flex flex-row gap-3 items-center">
             <input
               id="ksifre"
-              className='w-[350px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
+              className='max-w-[350px] min-w-[290px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder='Yeni şifrenizi girin (isteğe bağlı)'
             />
-            <button type="submit" className="w-40 h-12 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded">
-              Güncelle <FontAwesomeIcon className='ml-2' icon={faPen} />
-            </button>
+            
           </div>
         </div>
         <div className="flex flex-col">
@@ -100,29 +95,26 @@ function Index() {
           <div className="flex flex-row gap-3 items-center">
             <input
               id="kmail"
-              className='w-[350px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
+              className='max-w-[350px] min-w-[290px] bg-white/30 h-[50px] rounded px-4 py-2 text-black font-semibold shadow-black/30 shadow-inner border'
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder=''
               required
             />
-            <button type="submit" className="w-40 h-12 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded">
-              Güncelle <FontAwesomeIcon className='ml-2' icon={faPen} />
-            </button>
           </div>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-2">
           <div className="flex flex-col">
             <div className="flex flex-row gap-3 items-center">
-              <button disabled className="focus:outline-none disabled:cursor-not-allowed disabled:bg-red-900 disabled:text-gray-400 disabled:hover:bg-red-900 w-40 h-12 bg-red-700 hover:bg-red-800 border border-red-900 text-white transition-all font-semibold rounded">
-                Hesabı Sil <FontAwesomeIcon className='ml-2' icon={faTrash} />
+              <button type="submit" className="w-36 h-12 bg-blue-700 hover:bg-blue-800 text-white transition-all font-semibold rounded">
+                Güncelle <FontAwesomeIcon className='ml-2' icon={faPen} />
               </button>
             </div>
           </div>
           <div className="flex flex-col">
             <div className="flex flex-row gap-3 items-center">
-              <button onClick={handleLogOut} className="w-40 h-12 bg-red-700 hover:bg-red-800 border border-red-900 text-white transition-all font-semibold rounded">
+              <button onClick={handleLogOut} className="w-36 h-12 bg-red-700 hover:bg-red-800 border border-red-900 text-white transition-all font-semibold rounded">
                 Çıkış Yap <FontAwesomeIcon className='ml-2' icon={faPowerOff} />
               </button>
             </div>
