@@ -148,7 +148,7 @@ function Index() {
         
         <div className="flex flex-row gap-4 flex-wrap items-center justify-center">
           <button onClick={() => handleClick(1, null)} className="mt-4 w-52 h-11 bg-green-700 hover:bg-green-800 text-white transition-all font-semibold rounded">Ürün Ekle <FontAwesomeIcon className='ml-2' icon={faSquarePlus} /></button>
-          <div onClick={() => { setOpen(!isOpen); setOpen2(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Sırala <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} />
+          <div onClick={() => { setOpen(!isOpen); setOpen2(false); }} className="hover:bg-neutral-900 relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Sırala <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} />
             {isOpen && (
               <ul className="z-20 absolute top-14 mt-2 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-15 border border-gray-100">
                 <li onClick={() => handleSort('quantity')} className={`px-4 py-2 ${getSortClass('quantity')} font-medium cursor-pointer`}>Adede Göre <FontAwesomeIcon className='float-right' icon={faArrowDown19} /></li>
@@ -159,7 +159,7 @@ function Index() {
             )}
           </div>
           <div className="relative">
-            <div onClick={() => { setOpen2(!isOpen2); setOpen(false); }} className="relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Filtrele <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen2 ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} /></div>
+            <div onClick={() => { setOpen2(!isOpen2); setOpen(false); }} className="hover:bg-neutral-900 relative cursor-pointer flex items-center justify-center mt-4 gap-4 font-bold h-11 text-white px-6 bg-black rounded">Filtrele <FontAwesomeIcon className={`transition-all delay-300 ease-in-out ${isOpen2 ? 'mt-1 rotate-180' : 'mb-2'}`} icon={faSortDown} /></div>
             {isOpen2 && (
               <ul className="z-20 absolute top-20 w-56 bg-white text-black rounded shadow-2xl shadow-black -right-12 border border-gray-100">
                 <li className="px-4 py-2 hover:bg-gray-200 font-medium cursor-pointer">
